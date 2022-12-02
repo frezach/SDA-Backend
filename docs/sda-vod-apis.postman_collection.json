@@ -1,0 +1,4905 @@
+{
+	"info": {
+		"_postman_id": "73ec1ae2-2f63-4862-9a2f-21b3e9202150",
+		"name": "sda-vod-apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4907672"
+	},
+	"item": [
+		{
+			"name": "class",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Getting started with marry's techniques\",\n    \"hot\": false,\n    \"videoOfWeek\": true,\n    \"duration\": \"00:10:00\",\n    \"level\": 1,\n    \"difficultyLevel\": 25,\n    \"section\": [\n        {\n            \"title\": \"Introduction\",\n            \"start\": \"00:00:00\",\n            \"end\": \"00:10:00\"\n        },\n        {\n            \"title\": \"Taking small steps for big move\",\n            \"start\": \"00:10:00\",\n            \"end\": \"00:15:00\"\n        },\n        {\n            \"title\": \"Wrap up\",\n            \"start\": \"00:15:00\",\n            \"end\": \"00:20:00\"\n        }\n    ],\n    \"categories\": [\n        \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34e\",\n        \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n    ],\n    \"choreographer\": \"choreographer-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\",\n    \"type\": \"type-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/class",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Basic steps and prerequisites\",\n    \"hot\": false,\n    \"videoOfWeek\": true,\n    \"duration\": \"00:20:00\",\n    \"level\": 1,\n    \"difficultyLevel\": 25,\n    \"section\": [\n        {\n            \"title\": \"Introduction\",\n            \"start\": \"00:00:00\",\n            \"end\": \"00:10:00\"\n        },\n        {\n            \"title\": \"Taking small steps for big move\",\n            \"start\": \"00:10:00\",\n            \"end\": \"00:15:00\"\n        },\n        {\n            \"title\": \"Wrap up\",\n            \"start\": \"00:15:00\",\n            \"end\": \"00:20:00\"\n        }\n    ],\n    \"categories\": [\n        \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34e\",\n        \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n    ],\n    \"choreographer\": \"choreographer-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\",\n    \"type\": \"type-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/class",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"class"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "627"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.7.10"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jun 2022 09:59:04 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Basic steps and prerequisites\",\n    \"hot\": false,\n    \"videoOfWeek\": true,\n    \"duration\": \"00:20:00\",\n    \"level\": 1,\n    \"difficultyLevel\": 25,\n    \"section\": [\n        {\n            \"title\": \"Introduction\",\n            \"start\": \"00:00:00\",\n            \"end\": \"00:10:00\"\n        },\n        {\n            \"title\": \"Taking small steps for big move\",\n            \"start\": \"00:10:00\",\n            \"end\": \"00:15:00\"\n        },\n        {\n            \"title\": \"Wrap up\",\n            \"start\": \"00:15:00\",\n            \"end\": \"00:20:00\"\n        }\n    ],\n    \"categories\": [\n        \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34e\",\n        \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n    ],\n    \"choreographer\": \"choreographer-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\",\n    \"type\": \"type-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\",\n    \"PK\": \"class-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"This is updated title\",\n    \"hot\": true,\n    \"videoOfWeek\": false,\n    \"duration\": \"00:25:00\",\n    \"level\": 2,\n    \"difficultyLevel\": 56\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/class/class-01821c3e-045a-481a-9410-b23438194e4f/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"class",
+								"class-01821c3e-045a-481a-9410-b23438194e4f",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"This is updated title\",\n    \"hot\": true,\n    \"videoOfWeek\": false,\n    \"duration\": \"00:25:00\",\n    \"level\": 2,\n    \"difficultyLevel\": 56\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/class/class-01821c3e-045a-481a-9410-b23438194e4f/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"class",
+										"class-01821c3e-045a-481a-9410-b23438194e4f",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.7.10"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jun 2022 10:19:37 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"duration\": \"00:25:00\",\n    \"videoOfWeek\": false,\n    \"level\": 2,\n    \"difficultyLevel\": 56,\n    \"SK\": \"meta\",\n    \"PK\": \"class-01821c3e-045a-481a-9410-b23438194e4f\",\n    \"hot\": true,\n    \"title\": \"This is updated title\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/class/class-5c68b900-b0d0-402c-be43-e443cdeec827",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"class",
+								"class-5c68b900-b0d0-402c-be43-e443cdeec827"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/class/class-5c68b900-b0d0-402c-be43-e443cdeec827",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"class",
+										"class-5c68b900-b0d0-402c-be43-e443cdeec827"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "627"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.7.10"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jun 2022 13:40:39 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"duration\": \"00:20:00\",\n    \"videoOfWeek\": true,\n    \"level\": 1,\n    \"choreographer\": \"choreographer-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\",\n    \"difficultyLevel\": 25,\n    \"SK\": \"meta\",\n    \"section\": [\n        {\n            \"title\": \"Introduction\",\n            \"start\": \"00:00:00\",\n            \"end\": \"00:10:00\"\n        },\n        {\n            \"title\": \"Taking small steps for big move\",\n            \"start\": \"00:10:00\",\n            \"end\": \"00:15:00\"\n        },\n        {\n            \"title\": \"Wrap up\",\n            \"start\": \"00:15:00\",\n            \"end\": \"00:20:00\"\n        }\n    ],\n    \"categories\": [\n        \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34e\",\n        \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n    ],\n    \"PK\": \"class-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"title\": \"Basic steps and prerequisites\",\n    \"hot\": false,\n    \"type\": \"type-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n}"
+						}
+					]
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/class",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/class",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"class"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2949"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 14:07:30 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 8,\n    \"data\": [\n        {\n            \"duration\": \"00:20:00\",\n            \"videoOfWeek\": true,\n            \"level\": 1,\n            \"difficultyLevel\": 25,\n            \"SK\": \"meta\",\n            \"PK\": \"class-0df4f63a-4ffc-4050-858e-7ff9b87f840c\",\n            \"title\": \"Learn initial moves with Lorence\",\n            \"hot\": true\n        },\n        {\n            \"duration\": \"00:30:00\",\n            \"videoOfWeek\": false,\n            \"level\": 2,\n            \"choreographer\": \"choreographer-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\",\n            \"difficultyLevel\": 25,\n            \"SK\": \"meta\",\n            \"section\": [\n                {\n                    \"title\": \"Introduction\",\n                    \"start\": \"00:00:00\",\n                    \"end\": \"00:10:00\"\n                },\n                {\n                    \"title\": \"Taking small steps for big move\",\n                    \"start\": \"00:10:00\",\n                    \"end\": \"00:15:00\"\n                },\n                {\n                    \"title\": \"Wrap up\",\n                    \"start\": \"00:15:00\",\n                    \"end\": \"00:20:00\"\n                }\n            ],\n            \"categories\": [\n                \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34e\",\n                \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n            ],\n            \"PK\": \"class-bd233200-3a52-49a5-a953-75c7e3d4b2ee\",\n            \"title\": \"Getting started\",\n            \"hot\": true,\n            \"type\": \"type-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n        },\n        {\n            \"duration\": \"00:20:00\",\n            \"videoOfWeek\": true,\n            \"level\": 1,\n            \"difficultyLevel\": 25,\n            \"SK\": \"meta\",\n            \"section\": [\n                {\n                    \"title\": \"Introduction\",\n                    \"start\": \"00:00:00\",\n                    \"end\": \"00:10:00\"\n                },\n                {\n                    \"title\": \"Taking small steps for big move\",\n                    \"start\": \"00:10:00\",\n                    \"end\": \"00:15:00\"\n                },\n                {\n                    \"title\": \"Wrap up\",\n                    \"start\": \"00:15:00\",\n                    \"end\": \"00:20:00\"\n                }\n            ],\n            \"categories\": [\n                \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34e\",\n                \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n            ],\n            \"PK\": \"class-d335d7c8-2412-4a9f-be2f-3354344b02ae\",\n            \"title\": \"Basic steps and prerequisites\",\n            \"hot\": false\n        },\n        {\n            \"duration\": \"00:20:00\",\n            \"videoOfWeek\": true,\n            \"level\": 1,\n            \"choreographer\": \"choreographer-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\",\n            \"difficultyLevel\": 25,\n            \"SK\": \"meta\",\n            \"section\": [\n                {\n                    \"title\": \"Introduction\",\n                    \"start\": \"00:00:00\",\n                    \"end\": \"00:10:00\"\n                },\n                {\n                    \"title\": \"Taking small steps for big move\",\n                    \"start\": \"00:10:00\",\n                    \"end\": \"00:15:00\"\n                },\n                {\n                    \"title\": \"Wrap up\",\n                    \"start\": \"00:15:00\",\n                    \"end\": \"00:20:00\"\n                }\n            ],\n            \"categories\": [\n                \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34e\",\n                \"category-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n            ],\n            \"PK\": \"class-5c68b900-b0d0-402c-be43-e443cdeec827\",\n            \"title\": \"Basic steps and prerequisites\",\n            \"hot\": false,\n            \"type\": \"type-9252e484-b4bc-4a4e-bdb1-9dd64f57c34a\"\n        },\n        {\n            \"duration\": \"00:20:00\",\n            \"videoOfWeek\": true,\n            \"level\": 1,\n            \"difficultyLevel\": 25,\n            \"SK\": \"meta\",\n            \"section\": [\n                {\n                    \"title\": \"Introduction\",\n                    \"start\": \"00:00:00\",\n                    \"end\": \"00:10:00\"\n                },\n                {\n                    \"title\": \"Taking small steps for big move\",\n                    \"start\": \"00:10:00\",\n                    \"end\": \"00:15:00\"\n                },\n                {\n                    \"title\": \"Wrap up\",\n                    \"start\": \"00:15:00\",\n                    \"end\": \"00:20:00\"\n                }\n            ],\n            \"PK\": \"class-9252e484-b4bc-4a4e-bdb1-9dd64f57c34e\",\n            \"title\": \"Learn basics of good moves: Getting started\",\n            \"hot\": false\n        },\n        {\n            \"duration\": \"00:20:00\",\n            \"videoOfWeek\": true,\n            \"level\": 1,\n            \"difficultyLevel\": 25,\n            \"SK\": \"meta\",\n            \"PK\": \"class-59f2c83f-7372-409b-91fa-c98f351f6516\",\n            \"title\": \"Learn initial moves with Lorence\",\n            \"hot\": true\n        },\n        {\n            \"duration\": \"00:20:00\",\n            \"videoOfWeek\": true,\n            \"level\": 1,\n            \"difficultyLevel\": 25,\n            \"SK\": \"meta\",\n            \"PK\": \"class-865afc63-ab56-4dd2-8725-1ef28f5614d4\",\n            \"title\": \"Learn basics of good moves with Lorence\",\n            \"hot\": false\n        },\n        {\n            \"duration\": \"00:20:00\",\n            \"videoOfWeek\": true,\n            \"level\": 1,\n            \"difficultyLevel\": 25,\n            \"SK\": \"meta\",\n            \"PK\": \"class-941b95ac-11a4-4422-beb7-98dfaf08bd5a\",\n            \"title\": \"Learn initial moves with Lorence\",\n            \"hot\": true\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/class/class-01821c3e-045a-481a-9410-b23438194e4f/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"class",
+								"class-01821c3e-045a-481a-9410-b23438194e4f",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/class/class-01821c3e-045a-481a-9410-b23438194e4f/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"class",
+										"class-01821c3e-045a-481a-9410-b23438194e4f",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.7.10"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jun 2022 13:35:47 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "instructor",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Harris Mallow\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/instructor",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"instructor"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Morris Mallow\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/instructor",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"instructor"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.7.10"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jun 2022 13:42:32 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Morris Mallow\",\n    \"PK\": \"instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Mathews Jhonson\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/instructor/instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"instructor",
+								"instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Mathews Jhonson\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/instructor/instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"instructor",
+										"instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.7.10"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jun 2022 13:49:58 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"name\": \"Mathews Jhonson\",\n    \"PK\": \"instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/instructor/instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"instructor",
+								"instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/instructor/instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"instructor",
+										"instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.7.10"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jun 2022 13:51:42 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"name\": \"Mathews Jhonson\",\n    \"PK\": \"instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c\"\n}"
+						}
+					]
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/instructor",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"instructor"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "all",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/instructor",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"instructor"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "112"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 14:12:23 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 1,\n    \"data\": [\n        {\n            \"name\": \"Harris Mallow\",\n            \"SK\": \"meta\",\n            \"PK\": \"instructor-dc331adf-4a45-48eb-b78e-edff936b6376\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/instructor/instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"instructor",
+								"instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/instructor/instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"instructor",
+										"instructor-af189ac1-e6fc-40b4-94e6-bfc0ea03d40c",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.7.10"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jun 2022 13:56:23 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Break Dance\",\n    \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/category",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Break Dance\",\n    \"status\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/category",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "102"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 07:01:15 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Break Dance\",\n    \"status\": true,\n    \"PK\": \"category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Step up\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/category/category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"category",
+								"category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Step up\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/category/category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"category",
+										"category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 07:02:36 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda\",\n    \"title\": \"Step up\",\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/category/category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"category",
+								"category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/category/category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"category",
+										"category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 07:03:43 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda\",\n    \"title\": \"Step up\",\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/category",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "all",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/category",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "120"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 14:13:46 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 1,\n    \"data\": [\n        {\n            \"SK\": \"meta\",\n            \"PK\": \"category-bfce8527-77a6-4280-b061-f6cec5e9e0b8\",\n            \"title\": \"Hip Hop\",\n            \"status\": false\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/category/category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"category",
+								"category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/category/category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"category",
+										"category-ea446ffb-4bbc-40a0-af04-28bfe7c67bda",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 07:04:40 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "chreographer",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Emilly Watson\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/choreographer",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"choreographer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Emilly Watson\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/choreographer",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"choreographer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 07:07:32 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Emilly Watson\",\n    \"PK\": \"choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Will Robinsons\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/choreographer/choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"choreographer",
+								"choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Will Robinsons\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/choreographer/choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"choreographer",
+										"choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 07:09:13 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"name\": \"Will Robinsons\",\n    \"PK\": \"choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/choreographer/choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"choreographer",
+								"choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/choreographer/choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"choreographer",
+										"choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 07:10:33 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"name\": \"Will Robinsons\",\n    \"PK\": \"choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2\"\n}"
+						}
+					]
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/choreographer",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"choreographer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/choreographer",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"choreographer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 14:14:41 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 0,\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/choreographer/choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"choreographer",
+								"choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/choreographer/choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"choreographer",
+										"choreographer-2d0f1a8e-bbe3-4500-aa8b-8df40f8ec6b2",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 07:12:01 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "favorite",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": \"AWS USER ARN\",\n    \"class\": [\"class-5c68b900-b0d0-402c-be43-e443cdeec827\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/favorite",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"favorite"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": \"AWS USER ARN\",\n    \"class\": [\"class-5c68b900-b0d0-402c-be43-e443cdeec827\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/favorite",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"favorite"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:29:18 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": \"AWS USER ARN\",\n    \"class\": [\n        \"class-5c68b900-b0d0-402c-be43-e443cdeec827\"\n    ],\n    \"PK\": \"favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"class\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/favorite/favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"favorite",
+								"favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"class\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/favorite/favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"favorite",
+										"favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:30:44 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd\",\n    \"class\": [],\n    \"user\": \"AWS USER ARN\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/favorite/favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"favorite",
+								"favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/favorite/favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"favorite",
+										"favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:31:38 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd\",\n    \"class\": [],\n    \"user\": \"AWS USER ARN\"\n}"
+						}
+					]
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/favorite",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"favorite"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/favorite",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"favorite"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 14:15:24 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 0,\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/favorite/favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"favorite",
+								"favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/favorite/favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"favorite",
+										"favorite-1e2eb513-a300-4ab4-adce-b460b28eeccd",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:32:31 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "plan",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Monthly Subscription\",\n    \"duration\": 1,\n    \"type\": \"Month\",\n    \"status\": true,\n    \"price\": 99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/plan",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"plan"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Monthly Subscription\",\n    \"duration\": 1,\n    \"type\": \"Month\",\n    \"status\": true,\n    \"price\": 99\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/plan",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"plan"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "145"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:38:26 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Monthly Subscription\",\n    \"duration\": 1,\n    \"type\": \"Month\",\n    \"status\": true,\n    \"price\": 99,\n    \"PK\": \"plan-4841db9b-6ea6-49db-b0c7-747710db7e4b\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pro: Monthly Subscription\",\n    \"price\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/plan/plan-4841db9b-6ea6-49db-b0c7-747710db7e4b/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"plan",
+								"plan-4841db9b-6ea6-49db-b0c7-747710db7e4b",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Pro: Monthly Subscription\",\n    \"price\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/plan/plan-4841db9b-6ea6-49db-b0c7-747710db7e4b/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"plan",
+										"plan-4841db9b-6ea6-49db-b0c7-747710db7e4b",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:39:31 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"duration\": 1,\n    \"price\": 100,\n    \"SK\": \"meta\",\n    \"name\": \"Pro: Monthly Subscription\",\n    \"PK\": \"plan-4841db9b-6ea6-49db-b0c7-747710db7e4b\",\n    \"type\": \"Month\",\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/plan/plan-4841db9b-6ea6-49db-b0c7-747710db7e4b",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"plan",
+								"plan-4841db9b-6ea6-49db-b0c7-747710db7e4b"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/plan/plan-4841db9b-6ea6-49db-b0c7-747710db7e4b",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"plan",
+										"plan-4841db9b-6ea6-49db-b0c7-747710db7e4b"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:40:10 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"duration\": 1,\n    \"price\": 100,\n    \"SK\": \"meta\",\n    \"name\": \"Pro: Monthly Subscription\",\n    \"PK\": \"plan-4841db9b-6ea6-49db-b0c7-747710db7e4b\",\n    \"type\": \"Month\",\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/plan/plan-4841db9b-6ea6-49db-b0c7-747710db7e4b/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"plan",
+								"plan-4841db9b-6ea6-49db-b0c7-747710db7e4b",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/plan/plan-4841db9b-6ea6-49db-b0c7-747710db7e4b/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"plan",
+										"plan-4841db9b-6ea6-49db-b0c7-747710db7e4b",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:40:51 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "playlist",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Lectures by Jhon\",\n    \"type\": \"dance\",\n    \"classes\": [\n        \"class-5c68b900-b0d0-402c-be43-e443cdeec827\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/playlist",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"playlist"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Lectures by Jhon\",\n    \"type\": \"dance\",\n    \"classes\": [\n        \"class-5c68b900-b0d0-402c-be43-e443cdeec827\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/playlist",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"playlist"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "165"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:45:31 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Lectures by Jhon\",\n    \"type\": \"dance\",\n    \"classes\": [\n        \"class-5c68b900-b0d0-402c-be43-e443cdeec827\"\n    ],\n    \"PK\": \"playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classes\": [\n        \"class-b04b8648-2c85-47b2-9dc1-25208dc712e9\",\n        \"class-f04b8648-2c85-47b2-9dc1-25208dc712a9\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/playlist/playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"playlist",
+								"playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classes\": [\n        \"class-b04b8648-2c85-47b2-9dc1-25208dc712e9\",\n        \"class-f04b8648-2c85-47b2-9dc1-25208dc712a9\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/playlist/playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"playlist",
+										"playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "210"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:46:56 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9\",\n    \"title\": \"Lectures by Jhon\",\n    \"type\": \"dance\",\n    \"classes\": [\n        \"class-b04b8648-2c85-47b2-9dc1-25208dc712e9\",\n        \"class-f04b8648-2c85-47b2-9dc1-25208dc712a9\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/playlist/playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"playlist",
+								"playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/playlist/playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"playlist",
+										"playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "210"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:47:40 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9\",\n    \"title\": \"Lectures by Jhon\",\n    \"type\": \"dance\",\n    \"classes\": [\n        \"class-b04b8648-2c85-47b2-9dc1-25208dc712e9\",\n        \"class-f04b8648-2c85-47b2-9dc1-25208dc712a9\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/playlist/playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"playlist",
+								"playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/playlist/playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"playlist",
+										"playlist-b04b8648-2c85-47b2-9dc1-25208dc712e9",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:48:25 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "section",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Introduction to the series\",\n    \"status\": true,\n    \"start\": \"00:00:00\",\n    \"end\": \"00:10:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/section",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"section"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Introduction to the series\",\n    \"status\": true,\n    \"start\": \"00:00:00\",\n    \"end\": \"00:10:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/section",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"section"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "152"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:50:17 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Introduction to the series\",\n    \"status\": true,\n    \"start\": \"00:00:00\",\n    \"end\": \"00:10:00\",\n    \"PK\": \"section-43a8aceb-5357-4325-ad89-f32b642a2579\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/section/section-43a8aceb-5357-4325-ad89-f32b642a2579/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"section",
+								"section-43a8aceb-5357-4325-ad89-f32b642a2579",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/section/section-43a8aceb-5357-4325-ad89-f32b642a2579/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"section",
+										"section-43a8aceb-5357-4325-ad89-f32b642a2579",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:51:02 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"start\": \"00:00:00\",\n    \"end\": \"00:10:00\",\n    \"PK\": \"section-43a8aceb-5357-4325-ad89-f32b642a2579\",\n    \"title\": \"Introduction to the series\",\n    \"status\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/section/section-43a8aceb-5357-4325-ad89-f32b642a2579",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"section",
+								"section-43a8aceb-5357-4325-ad89-f32b642a2579"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/section/section-43a8aceb-5357-4325-ad89-f32b642a2579",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"section",
+										"section-43a8aceb-5357-4325-ad89-f32b642a2579"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:51:30 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"start\": \"00:00:00\",\n    \"end\": \"00:10:00\",\n    \"PK\": \"section-43a8aceb-5357-4325-ad89-f32b642a2579\",\n    \"title\": \"Introduction to the series\",\n    \"status\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/section/section-43a8aceb-5357-4325-ad89-f32b642a2579/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"section",
+								"section-43a8aceb-5357-4325-ad89-f32b642a2579",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/section/section-43a8aceb-5357-4325-ad89-f32b642a2579/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"section",
+										"section-43a8aceb-5357-4325-ad89-f32b642a2579",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:52:16 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "set",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Best from last month\",\n    \"classes\": [\n        \"class-5a68b900-b0d0-402c-ba43-e443cdeec827\",\n        \"class-5b68b900-b0d0-402c-bb43-e443cdeec817\",\n        \"class-5d68b900-b0d0-402c-be43-e443cdeec847\"\n    ],\n    \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/set",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"set"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Best from last month\",\n    \"classes\": [\n        \"class-5a68b900-b0d0-402c-ba43-e443cdeec827\",\n        \"class-5b68b900-b0d0-402c-bb43-e443cdeec817\",\n        \"class-5d68b900-b0d0-402c-be43-e443cdeec847\"\n    ],\n    \"status\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/set",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"set"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "253"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:54:13 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Best from last month\",\n    \"classes\": [\n        \"class-5a68b900-b0d0-402c-ba43-e443cdeec827\",\n        \"class-5b68b900-b0d0-402c-bb43-e443cdeec817\",\n        \"class-5d68b900-b0d0-402c-be43-e443cdeec847\"\n    ],\n    \"status\": true,\n    \"PK\": \"set-d89e7965-76c0-4266-a6f8-c5c786e1c71e\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Most viewed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/set/set-d89e7965-76c0-4266-a6f8-c5c786e1c71e/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"set",
+								"set-d89e7965-76c0-4266-a6f8-c5c786e1c71e",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Most viewed\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/set/set-d89e7965-76c0-4266-a6f8-c5c786e1c71e/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"set",
+										"set-d89e7965-76c0-4266-a6f8-c5c786e1c71e",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "244"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:55:17 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"set-d89e7965-76c0-4266-a6f8-c5c786e1c71e\",\n    \"title\": \"Most viewed\",\n    \"classes\": [\n        \"class-5a68b900-b0d0-402c-ba43-e443cdeec827\",\n        \"class-5b68b900-b0d0-402c-bb43-e443cdeec817\",\n        \"class-5d68b900-b0d0-402c-be43-e443cdeec847\"\n    ],\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/set/set-d89e7965-76c0-4266-a6f8-c5c786e1c71e",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"set",
+								"set-d89e7965-76c0-4266-a6f8-c5c786e1c71e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/set/set-d89e7965-76c0-4266-a6f8-c5c786e1c71e",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"set",
+										"set-d89e7965-76c0-4266-a6f8-c5c786e1c71e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "244"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:55:50 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"set-d89e7965-76c0-4266-a6f8-c5c786e1c71e\",\n    \"title\": \"Most viewed\",\n    \"classes\": [\n        \"class-5a68b900-b0d0-402c-ba43-e443cdeec827\",\n        \"class-5b68b900-b0d0-402c-bb43-e443cdeec817\",\n        \"class-5d68b900-b0d0-402c-be43-e443cdeec847\"\n    ],\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/set/set-d89e7965-76c0-4266-a6f8-c5c786e1c71e/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"set",
+								"set-d89e7965-76c0-4266-a6f8-c5c786e1c71e",
+								"meta"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subscription",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"plan\": \"plan-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"transaction\": \"transaction-5c68b900-b0d0-402c-be43-e443cdeec827\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/subscription",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"subscription"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"plan\": \"plan-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"transaction\": \"transaction-5c68b900-b0d0-402c-be43-e443cdeec827\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/subscription",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"subscription"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:59:33 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"PK\": \"subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37\",\n    \"plan\": \"plan-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"transaction\": \"transaction-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"plan\": \"plan-2fffa88a-666c-45ec-8cbb-967ba4413c37\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/subscription/subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"subscription",
+								"subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"plan\": \"plan-2fffa88a-666c-45ec-8cbb-967ba4413c37\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/subscription/subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"subscription",
+										"subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:00:49 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37\",\n    \"plan\": \"plan-2fffa88a-666c-45ec-8cbb-967ba4413c37\",\n    \"transaction\": \"transaction-5c68b900-b0d0-402c-be43-e443cdeec827\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/subscription/subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"subscription",
+								"subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/subscription/subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"subscription",
+										"subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:01:19 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"PK\": \"subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37\",\n    \"plan\": \"plan-2fffa88a-666c-45ec-8cbb-967ba4413c37\",\n    \"transaction\": \"transaction-5c68b900-b0d0-402c-be43-e443cdeec827\"\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/subscription/subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"subscription",
+								"subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/subscription/subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"subscription",
+										"subscription-2fffa88a-666c-45ec-8cbb-967ba4413c37",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:01:45 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"status\": \"pending\",\n    \"amount\": 99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/transaction",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"status\": \"pending\",\n    \"amount\": 99\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/transaction",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:06:41 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"status\": \"pending\",\n    \"amount\": 99,\n    \"SK\": \"transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"complete\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/transaction/user-5c68b900-b0d0-402c-be43-e443cdeec827/transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"transaction",
+								"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+								"transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"complete\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/transaction/user-5c68b900-b0d0-402c-be43-e443cdeec827/transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"transaction",
+										"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+										"transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "138"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:08:19 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14\",\n    \"amount\": 99,\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"status\": \"complete\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/transaction/user-5c68b900-b0d0-402c-be43-e443cdeec827/transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"transaction",
+								"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+								"transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/transaction/user-5c68b900-b0d0-402c-be43-e443cdeec827/transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"transaction",
+										"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+										"transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14"
+									]
+								}
+							},
+							"status": "FORBIDDEN",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:11:21 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Missing Authentication Token\"\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/transaction/user-5c68b900-b0d0-402c-be43-e443cdeec827/transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"transaction",
+								"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+								"transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/transaction/user-5c68b900-b0d0-402c-be43-e443cdeec827/transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"transaction",
+										"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+										"transaction-ac5094c0-82fb-4b5d-b2cd-0c467170de14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:12:15 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "type",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Hip-Hop\",\n    \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/type",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"type"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Hip-Hop\",\n    \"status\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/type",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"type"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:13:34 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Hip-Hop\",\n    \"status\": true,\n    \"PK\": \"type-0af5b65a-98e8-4790-b217-3f7777878c14\",\n    \"SK\": \"meta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Hip Hop\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/type/type-0af5b65a-98e8-4790-b217-3f7777878c14/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"type",
+								"type-0af5b65a-98e8-4790-b217-3f7777878c14",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Hip Hop\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/type/type-0af5b65a-98e8-4790-b217-3f7777878c14/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"type",
+										"type-0af5b65a-98e8-4790-b217-3f7777878c14",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:14:24 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"name\": \"Hip Hop\",\n    \"PK\": \"type-0af5b65a-98e8-4790-b217-3f7777878c14\",\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/type/type-0af5b65a-98e8-4790-b217-3f7777878c14",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"type",
+								"type-0af5b65a-98e8-4790-b217-3f7777878c14"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/type/type-0af5b65a-98e8-4790-b217-3f7777878c14",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"type",
+										"type-0af5b65a-98e8-4790-b217-3f7777878c14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:15:02 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"meta\",\n    \"name\": \"Hip Hop\",\n    \"PK\": \"type-0af5b65a-98e8-4790-b217-3f7777878c14\",\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/type/type-0af5b65a-98e8-4790-b217-3f7777878c14/meta",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"type",
+								"type-0af5b65a-98e8-4790-b217-3f7777878c14",
+								"meta"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/type/type-0af5b65a-98e8-4790-b217-3f7777878c14/meta",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"type",
+										"type-0af5b65a-98e8-4790-b217-3f7777878c14",
+										"meta"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:15:33 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "watchlist",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"title\": \"Things to watch in weekend\",\n    \"classes\": [\"class-5c68b900-b0d0-402c-be43-e443cdeec827\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/watchlist",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"watchlist"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"title\": \"Things to watch in weekend\",\n    \"classes\": [\"class-5c68b900-b0d0-402c-be43-e443cdeec827\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/watchlist",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"watchlist"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "198"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:17:12 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"title\": \"Things to watch in weekend\",\n    \"classes\": [\n        \"class-5c68b900-b0d0-402c-be43-e443cdeec827\"\n    ],\n    \"SK\": \"watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Favorite steps from Jhon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/watchlist/user-5c68b900-b0d0-402c-be43-e443cdeec827/watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"watchlist",
+								"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+								"watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Favorite steps from Jhon\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/watchlist/user-5c68b900-b0d0-402c-be43-e443cdeec827/watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"watchlist",
+										"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+										"watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "196"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:18:19 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SK\": \"watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e\",\n    \"PK\": \"user-5c68b900-b0d0-402c-be43-e443cdeec827\",\n    \"title\": \"Favorite steps from Jhon\",\n    \"classes\": [\n        \"class-5c68b900-b0d0-402c-be43-e443cdeec827\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/watchlist/user-5c68b900-b0d0-402c-be43-e443cdeec827",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"watchlist",
+								"user-5c68b900-b0d0-402c-be43-e443cdeec827"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/watchlist/user-5c68b900-b0d0-402c-be43-e443cdeec827",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"watchlist",
+										"user-5c68b900-b0d0-402c-be43-e443cdeec827"
+									]
+								}
+							},
+							"status": "INTERNAL SERVER ERROR",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:19:07 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No value defined: {}\"\n}"
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/watchlist/user-5c68b900-b0d0-402c-be43-e443cdeec827/watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"watchlist",
+								"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+								"watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "remove",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/watchlist/user-5c68b900-b0d0-402c-be43-e443cdeec827/watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"watchlist",
+										"user-5c68b900-b0d0-402c-be43-e443cdeec827",
+										"watchlist-a6188755-54bf-42a0-9bb6-7d996b800d7e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Cache-Control"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/1.0.1 Python/3.8.13"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 09:19:57 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ok\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "upload",
+			"item": [
+				{
+					"name": "/S3SignedURL-Preview",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"folder\": \"VoD-Preview\",\n    \"filename\": \"first-preview\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/S3SignedURL-Preview",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"S3SignedURL-Preview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/S3SignedURL-Original",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"folder\": \"VoD-Original\",\n    \"filename\": \"first\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/S3SignedURL-Original",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"S3SignedURL-Original"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "clientId",
+				"value": "1ilc8f6ejc59eh7mn57n7439c9",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://sda-auth-admin-staging.auth.us-east-1.amazoncognito.com/login",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "sda-admin",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "openid",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://stage-dance.intern-net.de",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "grant_type",
+				"value": "implicit",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://mydomain.auth.us-east-1.amazoncognito.com/oauth2/token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

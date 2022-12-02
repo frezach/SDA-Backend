@@ -1,0 +1,14 @@
+version=0.1
+[default.global.parameters]
+stack_name = "sda-vod-backend"
+
+[default.deploy.parameters]
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1w9md2eo3zul3"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_NAMED_IAM"
+tags = "project=\"stage-dance\" stage=\"production\""
+s3_prefix = "sda-vod-backend"
+parameter_overrides = "AppName=\"sda-vod-backend\" Stage=\"staging\""
+image_repositories = []
+disable_rollback = true

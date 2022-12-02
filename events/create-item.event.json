@@ -1,0 +1,4 @@
+{
+    "httpMethod": "POST",
+    "body": "{\"title\": \"category1\",\"status\": \"true\"}"
+}

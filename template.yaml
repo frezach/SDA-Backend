@@ -1,0 +1,1690 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: sda-vod-backend
+
+Globals:
+  Function:
+    Runtime: nodejs14.x
+    Tracing: Active
+    Architectures:
+      - x86_64
+    Timeout: 250
+    Environment:
+      Variables:
+        TABLE_NAME: !Sub 'sda-${Stage}'
+        REGION: !Sub '${AWS::Region}'
+        STAGE: !Ref Stage
+
+Parameters:
+  AppName:
+    Description: 'Name of the app to use for tag'
+    Type: String
+  Stage:
+    AllowedValues:
+      - dev
+      - staging
+      - prod
+    Description: 'Enter the application environment dev,staging or prod'
+    Type: String
+
+Resources:
+  StageDanceAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref Stage
+      Cors:
+        AllowMethods: "'POST, PUT, DELETE, GET, OPTIONS'"
+        AllowOrigin: "'*'"
+        AllowHeaders: "'Content-Type,x-requested-with,Access-Control-Allow-Origin,Access-Control-Allow-Headers,Access-Control-Allow-Methods,Authorization'"
+
+      Name: stage-dance-api
+      TracingEnabled: True
+      Auth:
+        AddDefaultAuthorizerToCorsPreflight: false
+        DefaultAuthorizer: CognitoAuthorizerAdmins
+        Authorizers:
+          CognitoAuthorizerAdmins:
+            UserPoolArn: !GetAtt AdminUserPool.Arn
+
+  StageDanceUserAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref Stage
+      Cors:
+        AllowMethods: "'POST, PUT, DELETE, GET, OPTIONS'"
+        AllowOrigin: "'*'"
+        AllowHeaders: "'Content-Type,x-requested-with,Access-Control-Allow-Origin,Access-Control-Allow-Headers,Access-Control-Allow-Methods,Authorization'"
+
+      Name: !Sub "stage-dance-user-api-${Stage}"
+      TracingEnabled: True
+      Auth:
+        AddDefaultAuthorizerToCorsPreflight: false
+        DefaultAuthorizer: CognitoAuthorizerUsers
+        Authorizers:
+          CognitoAuthorizerUsers:
+            UserPoolArn: !GetAtt UserPool.Arn
+
+  DataTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub 'sda-${Stage}'
+      BillingMode: PROVISIONED
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      KeySchema:
+      - AttributeName: PK
+        KeyType: HASH
+      - AttributeName: SK
+        KeyType: RANGE
+      AttributeDefinitions:
+      - AttributeName: PK
+        AttributeType: S
+      - AttributeName: SK
+        AttributeType: S
+      - AttributeName: GSI1
+        AttributeType: S
+      GlobalSecondaryIndexes:
+      - IndexName: GSI1
+        KeySchema:
+        - AttributeName: GSI1
+          KeyType: HASH
+        - AttributeName: SK
+          KeyType: RANGE
+        Projection:
+          ProjectionType: ALL
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+  # Cognito
+  # Admin Pool
+  AdminUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      AccountRecoverySetting:
+        RecoveryMechanisms:
+          - Name: admin_only # verified_email
+            Priority: 1
+      EnabledMfas:
+        - SOFTWARE_TOKEN_MFA
+      MfaConfiguration: OPTIONAL # ON
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: true
+      UserPoolName: !Sub sd-${Stage}-admins
+      UsernameAttributes:
+        - email
+      AutoVerifiedAttributes:
+        - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: false
+          RequireUppercase: true
+  AdminUserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: !Sub sda-auth-admin-${Stage}
+      UserPoolId: !Ref AdminUserPool
+  AdminUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId: !Ref AdminUserPool
+      ClientName: RestAdminApiClient
+      GenerateSecret: false
+      AllowedOAuthFlows:
+        - implicit
+        - code
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthScopes:
+        - openid
+      CallbackURLs:
+        - https://stage-dance.intern-net.de
+      DefaultRedirectURI: https://stage-dance.intern-net.de
+      EnableTokenRevocation: true
+      LogoutURLs:
+        - https://stage-dance.intern-net.de
+      PreventUserExistenceErrors: ENABLED
+      SupportedIdentityProviders:
+        - COGNITO
+        # - Facebook
+        # - SignInWithApple
+        # - Google
+        # - LoginWithAmazon
+
+  # Users Pool
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      AccountRecoverySetting:
+        RecoveryMechanisms:
+          - Name: verified_email
+            Priority: 1
+      # EnabledMfas:
+      #   - SOFTWARE_TOKEN_MFA
+      # MfaConfiguration: OFF
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: false
+      UserPoolName: !Sub sda-${Stage}-users
+      UsernameAttributes:
+        - email
+      AutoVerifiedAttributes:
+        - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: false
+          RequireUppercase: true
+  UserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: !Sub sda-auth-user-${Stage}
+      UserPoolId: !Ref UserPool
+  UserPoolIdentityProvider:
+    Type: AWS::Cognito::UserPoolIdentityProvider
+    Properties:
+      UserPoolId: !Ref UserPool
+      ProviderName: "Google"
+      ProviderDetails:
+        client_id: "56553959849-ljodgd51bgbb491vih8eej2e030cvdl8.apps.googleusercontent.com"
+        client_secret: "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"
+        authorize_scopes: "profile email openid"
+      ProviderType: "Google"
+      AttributeMapping:
+        email: "email"
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    DependsOn:
+      - UserPoolIdentityProvider
+    Properties:
+      UserPoolId: !Ref UserPool
+      ClientName: RestApiClient
+      GenerateSecret: false
+      AllowedOAuthFlows:
+        - implicit
+        - code
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthScopes:
+        - openid
+      CallbackURLs:
+        - https://stage-dance.intern-net.de
+      DefaultRedirectURI: https://stage-dance.intern-net.de
+      EnableTokenRevocation: true
+      LogoutURLs:
+        - https://stage-dance.intern-net.de
+      PreventUserExistenceErrors: ENABLED
+      SupportedIdentityProviders:
+        - COGNITO
+        # - Facebook
+        # - SignInWithApple
+        - Google
+        # - LoginWithAmazon
+
+  # S3 Buckets
+  VODPreview:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'vod-preview-${Stage}'
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+            - "*"
+          AllowedMethods:
+            - GET
+            - PUT
+            - HEAD
+          AllowedOrigins:
+            - "*"
+
+  VODAssets:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'vod-assets-${Stage}'
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+            - "*"
+          AllowedMethods:
+            - GET
+            - PUT
+            - HEAD
+          AllowedOrigins:
+            - "*"
+
+  VODOriginal:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'vod-original-${Stage}'
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+            - "*"
+          AllowedMethods:
+            - GET
+            - PUT
+            - HEAD
+          AllowedOrigins:
+            - "*"
+
+  VODOutput:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'vod-output-${Stage}'
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+            - "*"
+          AllowedMethods:
+            - GET
+            - PUT
+            - HEAD
+          AllowedOrigins:
+            - "*"
+
+  # IAM Roles
+  MediaConvertAgentRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Description: 'Role to grant MediaConvert access to the Lambda'
+      RoleName: !Sub 'sda-vod-${Stage}@mediaconvert'
+      # Policies:
+      #   - Version: '2012-10-17'
+      #     Statement:
+      #     - Effect: Allow
+      #       Resource: "*"
+      #       Action:
+      #       - s3:*
+      # Policies:
+      #   - S3FullAccessPolicy:
+      #       BucketName: !Ref VODOriginal
+      #   - S3FullAccessPolicy:
+      #       BucketName: !Ref VODOutput
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - mediaconvert.amazonaws.com
+          Action:
+          - sts:AssumeRole
+
+  # Lambda Handlers
+  getS3SignedURLFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 160
+      Handler: src/handlers/api.getS3SignedURL
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: POST
+            Path: /S3SignedURL
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - S3FullAccessPolicy:
+            BucketName: !Ref VODOriginal
+        - S3FullAccessPolicy:
+            BucketName: !Ref VODPreview
+        - S3FullAccessPolicy:
+            BucketName: !Ref VODAssets
+      Environment:
+        Variables:
+          STAGE: !Ref Stage
+          LOCAL_STACK_HOSTNAME: localhost
+          BUCKET: !Ref VODOriginal
+  # Admin API
+
+  # APIs
+  createCategoryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createCategory
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /category
+            Method: POST
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'category'
+
+  getCategoryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getCategory
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /category/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'category'
+
+  getCategoriesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getCategories
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /category
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'category'
+
+  updateCategoryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateCategory
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /category/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          Data_TYPE: 'category'
+
+  deleteCategoryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteCategory
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /category/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+         Data_TYPE: 'category'
+
+  createInstructorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createInstructor
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: POST
+            Path: /instructor
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'instructor'
+
+  getInstructorsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getInstructors
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: GET
+            Path: /instructor
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'instructor'
+
+  getInstructorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getInstructor
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /instructor/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'instructor'
+
+  updateInstructorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateInstructor
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /instructor/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'instructor'
+
+  deleteInstructorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteInstructor
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /instructor/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'instructor'
+
+  createChoreographerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createChoreographer
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: POST
+            Path: /choreographer
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'choreographer'
+
+  getChoreographersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getChoreographers
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: GET
+            Path: /choreographer
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'choreographer'
+
+  getChoreographerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getChoreographer
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /choreographer/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'choreographer'
+
+  updateChoreographerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateChoreographer
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /choreographer/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'choreographer'
+
+  deleteChoreographerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteChoreographer
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /choreographer/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'choreographer'
+
+  createPlaylistFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createPlaylist
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: POST
+            Path: /playlist
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'playlist'
+
+  getPlaylistsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getPlaylists
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: GET
+            Path: /playlist
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'playlist'
+
+  getPlaylistFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getPlaylist
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /playlist/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'playlist'
+
+  updatePlaylistFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updatePlaylist
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /playlist/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'playlist'
+
+  deletePlaylistFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deletePlaylist
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /playlist/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'playlist'
+
+  createFavoriteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createFavorite
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: POST
+            Path: /favorite
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'favorite'
+
+  getFavoritesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getFavorites
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: GET
+            Path: /favorite
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'favorite'
+
+  getFavoriteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getFavorite
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /favorite/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'favorite'
+
+  updateFavoriteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateFavorite
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /favorite/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'favorite'
+
+  deleteFavoriteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteFavorite
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /favorite/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'favorite'
+
+  createWatchlistFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createWatchlist
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: POST
+            Path: /watchlist
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+           TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'watchlist'
+
+  getWatchlistsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getWatchlists
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: GET
+            Path: /watchlist
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'watchlist'
+
+  getWatchlistFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getWatchlist
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /watchlist/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'watchlist'
+
+  updateWatchlistFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateWatchlist
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /watchlist/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'watchlist'
+
+  deleteWatchlistFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteWatchlist
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /watchlist/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'watchlist'
+
+  createSetFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createSet
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: POST
+            Path: /set
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'set'
+
+  getSetsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getSets
+      Events:
+        SyncRESTEvent:
+          Properties:
+            Method: GET
+            Path: /set
+            RestApiId: !Ref StageDanceAPI
+          Type: Api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'set'
+
+  getSetFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getSet
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /set/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'set'
+
+  updateSetFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateSet
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /set/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'set'
+
+  deleteSetFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteSet
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /set/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'set'
+
+  createSectionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createSection
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /section
+            Method: POST
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'section'
+
+  getSectionsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handler/api.getSections
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /section
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'section'
+
+  getSectionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getSection
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /section/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'section'
+
+  updateSectionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateSection
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /section/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'section'
+
+  deleteSectionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteSection
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /section/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'section'
+
+  createTypeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createType
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /type
+            Method: POST
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'type'
+
+  getTypesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getTypes
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /type
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+           TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'type'
+
+  getTypeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getType
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /type/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'type'
+
+  updateTypeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateType
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /type/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'type'
+
+  deleteTypeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteType
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /type/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'type'
+
+  createPlanFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createPlan
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /plan
+            Method: POST
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'plan'
+
+  getPlansFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getPlans
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /plan
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'plan'
+
+  getPlanFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getPlan
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /plan/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'plan'
+
+  updatePlanFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updatePlan
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /plan/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'plan'
+
+  deletePlanFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deletePlan
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /plan/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'plan'
+
+  createTransactionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createTransaction
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /transaction
+            Method: POST
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'transaction'
+
+  getTransactionsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getTransactions
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /transaction
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'transaction'
+
+  getTransactionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getTransaction
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /transaction/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'transaction'
+
+  updateTransactionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateTransaction
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /transaction/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'transaction'
+
+  deleteTransactionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteTransaction
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /transaction/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'transaction'
+
+  createSubscriptionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createSubscription
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /subscription
+            Method: POST
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'subscription'
+
+  getSubscriptionsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getSubscriptions
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /subscription
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'subscription'
+
+  getSubscriptionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getSubscription
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /subscription/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'subscription'
+
+  updateSubscriptionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateSubscription
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /subscription/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'subscription'
+
+  deleteSubscriptionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteSubscription
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /subscription/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'subscription'
+
+  createClassFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.createClass
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /class
+            Method: POST
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'class'
+
+  getClassesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getClasses
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /class
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'class'
+
+  getClassFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.getClass
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /class/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'class'
+
+  updateClassFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.updateClass
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /class/{PK}/{SK}
+            Method: PUT
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'class'
+
+  deleteClassFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.deleteClass
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /class/{PK}/{SK}
+            Method: DELETE
+            RestApiId: !Ref StageDanceAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DATA_TYPE: 'class'
+
+  # User APIs
+  getHomeScreenDataFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/app.getHomeScreenData
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /api/home
+            Method: GET
+            RestApiId: !Ref StageDanceUserAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+
+  getListOfItems:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/app.getAllByDataType
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /api/{type}
+            Method: GET
+            RestApiId: !Ref StageDanceUserAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+
+  getSingleItem:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/app.getSingleItem
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Path: /api/{type}/{PK}
+            Method: GET
+            RestApiId: !Ref StageDanceUserAPI
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBReadPolicy:
+            TableName: !Ref DataTable
+
+  getMediaRedirect:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/app.redirect
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Resource: "*"
+            Action:
+            - s3:*
+      Events:
+        SyncRESTEvent:
+          Type: Api
+          Properties:
+            Auth:
+              Authorizer: NONE
+            Path: /api/media/get
+            Method: GET
+            RestApiId: !Ref StageDanceUserAPI
+
+  # Triggers
+  triggerVideoTranscodingJob:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/api.transcodingHandler
+      Policies:
+        - AWSLambdaExecute
+        - Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Resource: "*"
+            Action:
+            - iam:GetRole
+            - iam:PassRole
+            - mediaconvert:*
+      Events:
+        CreateThumbnailEvent:
+          Type: S3
+          Properties:
+            Bucket: !Ref VODOriginal
+            Events: s3:ObjectCreated:*
+      Environment:
+        Variables:
+          MEDIA_CONVERT_ROLE_ARN: !GetAtt MediaConvertAgentRole.Arn
+          OUTPUT_BUCKET: !Ref VODOutput
+          MEDIA_CONVERT_ENDPOINT: "https://q25wbt2lc.mediaconvert.us-east-1.amazonaws.com"
+          MEDIA_CONVERT_QUEUE_ARN: "arn:aws:mediaconvert:us-east-1:555053453307:queues/Default"
+
+Outputs:
+  AdminWebEndpoint:
+    Description: "Stage Dance API"
+    Value: !Sub "https://${StageDanceAPI}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/"
+  UserWebEndpoint:
+    Description: "Stage Dance User API"
+    Value: !Sub "https://${StageDanceUserAPI}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/"
+  AuthUriUsers:
+    Description: "User Login Page"
+    Value: !Sub "https://${UserPoolDomain}.auth.${AWS::Region}.amazonaws.com/"
+  AuthUriAdmins:
+    Description: "User Login Page"
+    Value: !Sub "https://${AdminUserPoolDomain}.auth.${AWS::Region}.amazonaws.com/"
